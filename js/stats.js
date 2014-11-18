@@ -128,7 +128,10 @@
 		{
 			case scope.UI_PLAYER_STATS:
 			{
-				$('#stats').load('stats/player-stats.php');
+				$('#stats').load('stats/player-stats.php', function()
+				{
+					$('#player-stats').slimtable();
+				});
 			}
 				break;
 

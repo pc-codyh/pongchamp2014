@@ -42,7 +42,9 @@
 	<meta charset="UTF-8">
 	<title>Pong Champ</title>
 	<link rel="stylesheet" href="css/pc.css" />
+	<link rel='stylesheet' href='css/slimtable.css' />
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type='text/javascript' src='js/slimtable.js'></script>
 	<script type="text/javascript" src="js/stats.js"></script>
 </head>
 <body>
