@@ -1,0 +1,1420 @@
+@font-face
+{
+	font-family: 'Syncopate', sans-serif;
+	src: url(../fonts/Syncopate-Regular.ttf);
+}
+
+@font-face
+{
+	font-family: 'Syncopate', sans-serif;
+	font-weight: bold;
+	src: url(../fonts/Syncopate-Bold.ttf);
+}
+
+@font-face
+{
+	font-family: 'Oswald', sans-serif;
+	src: url(../fonts/Oswald-Regular.ttf);
+}
+
+@font-face
+{
+	font-family: 'Oswald', sans-serif;
+	font-weight: bold;
+	src: url(../fonts/Oswald-Bold.ttf);
+}
+
+body
+{
+	font-family: 'Oswald', sans-serif;
+	-webkit-backface-visibility:hidden;
+
+	background: black;
+}
+
+#background
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+
+	display: block;
+	background: url(../img/test3.png);
+	/*background: white;*/
+	/*background: #F5F5DC;*/
+
+	width: 100%;
+	height: 100%;
+}
+
+#page-wrapper
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+
+	width: 100%;
+	height: 100%;
+}
+
+#main-container
+{
+	position: absolute;
+	top: -100px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 500px;
+	height: 500px;
+}
+
+#title
+{
+	top: 55px;
+	font-size: 45px;
+	/*text-shadow: 0 0 1px black;*/
+}
+
+#subtitle
+{
+	bottom: 20px;
+	font-size: 22px;
+	/*text-shadow: 0 0 1px black;*/
+}
+
+.title
+{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+#main-container img
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 240px;
+	height: 240px;
+	border-radius: 150px;
+}
+
+#login-container
+{
+	position: absolute;
+	top: 350px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 140px;
+	height: 100px;
+}
+
+.menu-button
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: 50px;
+	height: 100px;
+}
+
+.menu-button .icon
+{
+	position: absolute;
+	top: 0;
+	width: 50px;
+	height: 50px;
+}
+
+.menu-button .icon:hover
+{
+	cursor: pointer;
+}
+
+.menu-button h3
+{
+	position: absolute;
+	top: 52px;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#login
+{
+	margin-left: 14px;
+}
+
+#login .icon
+{
+	background: url(../img/login.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#login .icon:hover
+{
+	background: url(../img/login-hover.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#signup
+{
+	margin-right: 14px;
+}
+
+#signup .icon
+{
+	background: url(../img/signup.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#signup .icon:hover
+{
+	background: url(../img/signup-hover.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#find-out-more a
+{
+	position: absolute;
+	bottom: 15px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 80px;
+	text-align: center;
+	font-size: 12px;
+	color: black;
+}
+
+#find-out-more a:hover
+{
+	color: #A00000;
+}
+
+#go-back
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	z-index: -1;
+}
+
+#app-container
+{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#app-container h2
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 82px;
+	text-align: center;
+	font-size: 40px;
+	margin: 0;
+	padding: 18px 0 0 0;
+	z-index: 2;
+
+	background: rgba(255, 255, 255, 0.8);
+	border-bottom: 1px solid #444444;
+}
+
+#app-container #footer
+{
+	position: absolute;
+	top: 456px;
+	left: 0;
+	width: 100%;
+	height: 0;
+
+	background: url(../img/test6.png);
+
+	z-index: 2;
+}
+
+#app-container #footer #copyright
+{
+	position: absolute;
+	right: 0;
+	bottom: 20px;
+	left: 0;
+	margin: 0 auto;
+	font-size: 10px;
+	text-align: center;
+	width: 100%;
+	color: #DDDDDD;
+}
+
+#back-to-top
+{
+	font-size: 12px;
+	color: #A00000;
+}
+
+#back-to-top:hover
+{
+	color: #C00000;
+}
+
+#app-container .app
+{
+	position: absolute;
+	top: 100px;
+	width: 33%;
+	height: 356px;
+}
+
+#app-container #android,
+#app-container #ios-hover
+{
+	left: 3%;
+}
+
+#app-container #ios,
+#app-container #android-hover
+{
+	left: 30%;
+}
+
+.app img:hover
+{
+	cursor: pointer;
+}
+
+#app-container #app-hover
+{
+	left: 66%;
+	width: 34% !important;
+	z-index: 1;
+	background: white;
+	border-top: 1px solid #555555;
+	/*border-left: 1px solid #555555;*/
+	box-shadow: 0 0 5px black;
+	/*box-shadow: -5px 0 5px -5px #333, 5px 0 5px -5px #333;*/
+}
+
+#app-container .app-hover
+{
+	background: url(../img/test3.png);
+	z-index: 1;
+	display: none;
+}
+
+#app-container #android img,
+#app-container #ios img
+{
+	position: absolute;
+	top: -45px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 240px;
+	height: 240px;
+}
+
+#app-container .app-store
+{
+	position: absolute;
+	top: 245px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	text-align: center;
+	font-size: 30px;
+
+	width: 240px;
+	height: 40px;
+}
+
+.app-hover h3,
+#app-hover h3
+{
+	margin: 20px 0 0 20px;
+	padding: 0;
+	font-size: 20px;
+	/*text-shadow: 0 0 1px black;*/
+}
+
+.app-hover ul,
+#app-hover ul
+{
+	margin: 0 0 0 20px;
+	padding: 0 0 0 20px;
+}
+
+#modal-container
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 4;
+
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+	opacity: 1;
+}
+
+#modal-container #circle
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 300px;
+	height: 210px;
+
+	background: white;
+}
+
+.register-circle
+{
+	height: 310px !important;
+}
+
+#modal-container #circle input
+{
+	width: 180px;
+	height: 25px;
+
+	background: white;
+	border: 1px solid black;
+
+	margin: 3px;
+	padding: 2px 6px;
+
+	font-size: 14px;
+}
+
+#modal-container #circle .password
+{
+	width: 142px !important;
+}
+
+#modal-container #circle #login-modal-title,
+#modal-container #circle #register-modal-title
+{
+	position: absolute;
+	top: 15px;
+	left: 50%;
+	margin: 0 0 0 -80px;
+	font-size: 20px;
+
+	width: 160px;
+	height: 30px;
+
+	text-align: center;
+
+	display: none;
+}
+
+#modal-container #circle #login-modal-container,
+#modal-container #circle #register-modal-container
+{
+	position: absolute;
+	top: 60px;
+	left: 50%;
+
+	width: 198px;
+	height: 90px;
+	margin: 0 0 0 -99px;
+
+	display: none;
+}
+
+#modal-container #circle #register-modal-container
+{
+	height: 154px !important;
+	width: 236px !important;
+	margin: 0 0 0 -101px !important;
+}
+
+#modal-container #circle #register-modal-submit
+{
+	position: absolute;
+	top: 0;
+	right: 30px;
+
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+
+	background: url(../img/signup.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#modal-container #circle #login-modal-submit:focus,
+#modal-container #circle #register-modal-submit:focus
+{
+	outline: none;
+	box-shadow: 0 0 3px 2px #A00000;
+}
+
+#modal-container #circle #register-modal-submit-container
+{
+	position: absolute;
+	top: 210px;
+	left: 50%;
+
+	width: 210px;
+	height: 40px;
+	margin: 0 0 0 -105px;
+
+	display: none;
+}
+
+#modal-container #circle #register-modal-submit-container h3
+{
+	font-size: 14px;
+	margin: 0;
+	padding: 10px 0 0 30px;
+}
+
+.login-form-icon
+{
+	width: 20px;
+	height: 20px;
+	margin: 8px 12px 0 0;
+	float: right;
+}
+
+#login-modal-submit
+{
+	width: 30px !important;
+	height: 30px !important;
+	margin: 3px 2px 0 0 !important;
+	border-radius: 15px;
+}
+
+#login-modal-submit:hover
+{
+	cursor: pointer;
+}
+
+#modal-container #circle #register-modal-submit:hover
+{
+	cursor: pointer;
+	background: url(../img/signup-hover.png) 0 0 no-repeat !important;
+	background-size: cover !important;
+}
+
+#modal-container #circle .modal-footer-container
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	width: 100%;
+	height: 45px;
+
+	background: #DDDDDD;
+	display: none;
+}
+
+#modal-container #circle .modal-footer-container p
+{
+	width: 100%;
+	text-align: center;
+	margin: 14px 0 0 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+#modal-container #circle .modal-footer-container p span
+{
+	color: #A00000;
+	text-decoration: underline;
+}
+
+#modal-container #circle .modal-footer-container p span:hover
+{
+	color: #C00000;
+	cursor: pointer;
+}
+
+#register-username-icon,
+#register-password-icon,
+#register-confirm-password-icon
+{
+	display: none;
+}
+
+.register-modal-message
+{
+	position: absolute;
+	top: 165px;
+	left: 0;
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	font-size: 10px;
+	color: #A00000;
+	display: none;
+}
+
+#register-modal-message-valid
+{
+	color: #555555 !important;
+}
+
+.login-modal-message
+{
+	position: absolute;
+	top: 125px;
+	left: 0;
+	width: 100%;
+	height: 25px;
+	text-align: center;
+	font-size: 10px;
+	color: #A00000;
+	display: none;
+}
+
+.blurred
+{
+	filter: blur(3px);
+	-webkit-filter: blur(3px);
+}
+
+.dead-center
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
+#modal-container input:focus
+{
+	outline-color: #A00000;
+}
+
+.input-icon
+{
+	display: none;
+}
+
+#footer-left-menu
+{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+
+	width: 300px;
+	height: 110px;
+}
+
+.footer-left-submenu
+{
+	position: absolute;
+	top: 0;
+	width: 100px;
+	height: 100%;
+}
+
+#footer-left-menu #left-menu-1
+{
+	left: 0;
+}
+
+#footer-left-menu #left-menu-2
+{
+	left: 100px;
+}
+
+#footer-left-menu #left-menu-3
+{
+	left: 200px;
+}
+
+#footer-left-menu ul li
+{
+	list-style-type: none;
+	margin: 5px;
+	padding: 0;
+	color: #DDDDDD;
+	font-size: 12px;
+}
+
+
+
+
+#main-stats-container
+{
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#stats-menu-container
+{
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	width: 480px;
+	height: 60px;
+	margin: 0 0 0 -240px;
+}
+
+.stats-menu-icon
+{
+	position: absolute;
+	top: 0;
+	width: 60px;
+	height: 60px;
+}
+
+.stats-menu-icon h4
+{
+	position: absolute;
+	left: -5px;
+	bottom: -32px;
+	width: 70px;
+	font-size: 11px;
+	text-align: center;
+}
+
+.stats-menu-icon:hover
+{
+	cursor: pointer;
+}
+
+#stats-menu-player-stats
+{
+	left: 0;
+	background: url(../img/player-stats-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-player-profiles
+{
+	left: 70px;
+	background: url(../img/player-profiles-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-team-stats
+{
+	left: 140px;
+	background: url(../img/team-stats-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-team-profiles
+{
+	left: 210px;
+	background: url(../img/team-profiles-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-game-results
+{
+	left: 280px;
+	background: url(../img/game-results-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-head-to-head
+{
+	left: 350px;
+	background: url(../img/head-to-head-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#stats-menu-achievements
+{
+	left: 420px;
+	background: url(../img/achievements-icon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+.stats-menu-icon-inactive
+{
+	opacity: 0.2;
+}
+
+#account-container
+{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 200px;
+	height: 44px;
+	z-index: 5;
+}
+
+#account-icon
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+
+	border-radius: 21px;
+	border: 1px solid black;
+}
+
+#account-icon:hover
+{
+	cursor: pointer;
+}
+
+#account-user
+{
+	top: 6%;
+}
+
+#account-link-container
+{
+	top: 56%;
+	font-size: 10px;
+}
+
+.account-info
+{
+	position: absolute;
+	left: -5px;
+	width: 156px;
+	height: 100%;
+	text-align: right;
+}
+
+#account-link-container a
+{
+	color: black;
+}
+
+#account-link-container a:hover
+{
+	color: #A00000;
+}
+
+#my-account
+{
+	position: absolute;
+	top: 64px;
+	right: 15px;
+	width: 0;
+	height: 0;
+	opacity: 0;
+	z-index: 5;
+
+	background: white;
+}
+
+#my-account #my-account-footer
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 45px;
+	background: #DDDDDD;
+}
+
+.my-account-setting
+{
+	position: absolute;
+	top: 0;
+	width: 50%;
+	height: 100%;
+	font-size: 12px;
+	color: #A00000 !important;
+}
+
+.my-account-setting:hover
+{
+	background: #BEBEBE;
+	cursor: pointer;
+	color: #C00000 !important;
+}
+
+#my-account #my-account-choose-icon-container
+{
+	left: 0;
+	border-right: 1px solid #BEBEBE;
+}
+
+#my-account #my-account-upload-icon-container
+{
+	right: 0;
+}
+
+.my-account-subsetting
+{
+	position: absolute;
+	top: 14px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+#my-account-overlay
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+	opacity: 1;
+}
+
+.my-account-item
+{
+	position: absolute;
+	left: 5%;
+	width: 90%;
+	height: 50px;
+	border-bottom: 1px solid #EAEAEA;
+}
+
+#my-account-1
+{
+	top: 0;
+}
+
+#my-account-2
+{
+	top: 51px;
+}
+
+#my-account-3
+{
+	top: 102px;
+}
+
+#my-account-4
+{
+	top: 153px;
+}
+
+#my-account-5
+{
+	top: 204px;
+}
+
+.my-account-title
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	font-size: 13px;
+	padding: 14px 0 0 0;
+}
+
+.my-account-value
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50%;
+	height: 100%;
+	text-align: right;
+	color: #666666;
+	padding: 14px 0 0 0;
+}
+
+.my-account-item a
+{
+	color: #A00000;
+}
+
+.setting-subcontainer
+{
+	position: absolute;
+	top: 214px;
+	right: 15px;
+	width: 300px;
+	height: 150px;
+	background: white;
+	display: none;
+	z-index: 4;
+}
+
+#upload-icon-container
+{
+	height: 110px !important;
+}
+
+#choose-icon-container table
+{
+	width: 240px;
+	height: 150px;
+
+	margin: -4px 0 0 30px;
+	padding: 0;
+}
+
+#choose-icon-container table td
+{
+	width: 60px;
+	height: 75px;
+	margin: 0;
+	padding: 0;
+}
+
+.choose-icon-icon
+{
+	width: 40px;
+	height: 40px;
+	border-radius: 21px;
+	border: 1px solid black;
+	margin: 0 0 0 7px;
+}
+
+.choose-icon-icon:hover
+{
+	cursor: pointer;
+}
+
+.top-row
+{
+	margin-top: 15px !important;
+}
+
+.bottom-row
+{
+	margin-bottom: 15px !important;
+}
+
+#default-icon-1
+{
+	background: url(../img/default-icons/default-1.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-2
+{
+	background: url(../img/default-icons/default-2.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-3
+{
+	background: url(../img/default-icons/default-3.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-4
+{
+	background: url(../img/default-icons/default-4.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-5
+{
+	background: url(../img/default-icons/default-5.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-6
+{
+	background: url(../img/default-icons/default-6.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-7
+{
+	background: url(../img/default-icons/default-7.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#default-icon-8
+{
+	background: url(../img/default-icons/default-8.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#account-setting-message-container
+{
+	position: absolute;
+	top: 319px;
+	right: 15px;
+	width: 300px;
+	height: 45px;
+	background: white;
+	z-index: 4;
+	font-size: 14px;
+	text-align: center;
+	display: none;
+}
+
+#account-setting-message-container img
+{
+	width: 20px;
+	height: 20px;
+	padding: 0 0 0 5px;
+	vertical-align: bottom;
+}
+
+#account-setting-message
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+
+	width: 100%;
+	height: 22px;
+}
+
+#upload-icon-message
+{
+	position: absolute;
+	top: 48px;
+	left: 0;
+	width: 100%;
+	text-align: left;
+	font-size: 9px;
+	color: #555555;
+	margin: 0 0 0 28px;
+}
+
+#upload-icon-submit-container
+{
+	position: absolute;
+	top: 60px;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+	width: 210px;
+	height: 30px;
+}
+
+#upload-icon-submit-container h3
+{
+	font-size: 14px;
+	margin: 0;
+	padding: 10px 0 0 67px;
+}
+
+#upload-icon-submit
+{
+	position: absolute;
+	top: 5px;
+	right: 67px;
+
+	width: 30px;
+	height: 30px;
+	border-radius: 20px;
+
+	background: url(../img/active-input.png) 0 0 no-repeat;
+	background-size: cover;
+
+	transform: rotate(90deg);
+}
+
+#upload-icon-submit:hover
+{
+	background: url(../img/active-input-hover.png) 0 0 no-repeat;
+	background-size: cover;
+	cursor: pointer;
+}
+
+#upload-icon-submit:focus
+{
+	outline: none;
+	box-shadow: 0 0 3px 2px #A00000;
+}
+
+#upload-url
+{
+	font-size: 14px;
+	vertical-align: middle;
+}
+
+#upload-url-text
+{
+	vertical-align: bottom;
+}
+
+#reference-file
+{
+	width: 180px;
+	height: 25px;
+	background: white;
+	border: 1px solid black;
+	margin: 3px;
+	padding: 2px 6px;
+	font-size: 14px;
+}
+
+#reference-file:focus
+{
+	outline-color: #A00000;
+}
+
+#upload-icon-container table
+{
+	position: absolute;
+	top: 15px;
+	right: 0;
+	left: 0;
+	margin: 0 auto;
+	width: 240px;
+	height: 40px;
+}
+
+/******************************/
+
+#achievements-container
+{
+	position: absolute;
+	top: 100px;
+	left: 10%;
+	width: 40%;
+	overflow-y: scroll;
+	box-shadow: 0 0 5px black;
+}
+
+#achievements-container .item
+{
+	/*position: absolute;*/
+	/*left: 10%;*/
+	/*right: 0;*/
+	/*width: 40%;*/
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #555555;
+	background: white;
+}
+
+#achievements-container .item:hover
+{
+	background: white;
+	cursor: pointer;
+}
+
+#achievements-container .title
+{
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*bottom: 0;*/
+	/*left: 50px;*/
+	/*margin: auto 0;*/
+	/*height: 24px;*/
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+	margin: 13px 0 0 50px;
+	width: 60%;
+}
+
+#achievements-container .desc
+{
+	/*position: absolute;*/
+	/*top: 0;*/
+	/*bottom: 0;*/
+	/*right: 20px;*/
+	/*margin: auto 0;*/
+	height: 16px;
+	font-size: 12px;
+	text-align: right;
+	/*margin: 17px 10px 0 0;*/
+	padding: 18px 10px 0 0;
+}
+
+#achievements-container .icon
+{
+	/*position: absolute;*/
+	/*top: 8px;*/
+	/*left: 8px;*/
+	width: 34px;
+	height: 34px;
+	float: left;
+	margin: 8px 0 0 8px;
+}
+
+#achievements-container .sharpshooter .icon
+{
+	background: url(../img/achievements/sharpshooter.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .michael-jordan .icon
+{
+	background: url(../img/achievements/michael-jordan.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .the-kid-can-play .icon
+{
+	background: url(../img/achievements/the-kid-can-play.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .heartbreak-city .icon
+{
+	background: url(../img/achievements/heartbreak-city.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .caught-with-their-pants-down .icon
+{
+	background: url(../img/achievements/caught-with-their-pants-down.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .porn-star .icon
+{
+	background: url(../img/achievements/porn-star.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .perfection .icon
+{
+	background: url(../img/achievements/perfection.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .down-but-not-out .icon
+{
+	background: url(../img/achievements/down-but-not-out.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .marathon .icon
+{
+	background: url(../img/achievements/marathon.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .first-degree-murder .icon
+{
+	background: url(../img/achievements/first-degree-murder.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#achievements-container .comeback-kill .icon
+{
+	background: url(../img/achievements/comeback-kill.png) 0 0 no-repeat;
+	background-size: cover;
+}
+
+#feature-1
+{
+	top: 0;
+}
+
+#feature-2
+{
+	top: 51px;
+}
+
+#feature-3
+{
+	top: 102px;
+}
+
+#feature-4
+{
+	top: 153px;
+}
+
+#feature-5
+{
+	top: 204px;
+}
+
+#feature-6
+{
+	top: 255px;
+	border: none;
+}
+
+#feature-7
+{
+	top: 306px;
+	background: #DDDDDD;
+	width: 100%;
+	left: 0;
+	text-align: center;
+	border: none;
+}
+
+#feature-7 .feature-title
+{
+	padding: 10px 0 0 0 !important;
+}
+
+.feature-item
+{
+	position: absolute;
+	left: 5%;
+	width: 90%;
+	height: 50px;
+	border-bottom: 1px solid #EAEAEA;
+}
+
+.feature-title
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+	padding: 14px 0 0 0;
+}
+
+
+
+
