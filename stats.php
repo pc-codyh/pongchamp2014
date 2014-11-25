@@ -86,5 +86,7 @@
 		</div>
 	</div>
 	<div id="stats"></div>
+	<div id="left-menu" class="side-menu"></div>
+	<div id="right-menu" class="side-menu"></div>
 </body>
 </html>

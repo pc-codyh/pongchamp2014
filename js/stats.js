@@ -8,6 +8,9 @@
 	this.UI_ACHIEVEMENTS 	= 6;
 
 	this.username;
+	this.currentIdx;
+	this.currentSeasonId;
+	this.currentTableId;
 
 	var scope = this;
 
@@ -19,6 +22,8 @@
 		uploadIconClickHandler();
 		logoutClickHandler();
 		categoriesClickHandler();
+		leftMenuClickHandler();
+		rightMenuClickHandler();
 	});
 
 	function myAccountClickHandler()
@@ -116,60 +121,163 @@
 			{
 				if ($(this).hasClass('active'))
 				{
-					updateStatsUI(idx);
+					updateStatsUI(idx, 'overall', 'rank', true);
+
+					scope.currentSeasonId = 'overall';
+					scope.currentTableId = 'rank';
 				}
 			});
 		});
 	};
 
-	function updateStatsUI(idx)
+	function leftMenuClickHandler()
 	{
-		switch(idx)
+		$('#left-menu ul li').click(function()
 		{
-			case scope.UI_PLAYER_STATS:
-			{
-				$('#stats').load('stats/player-stats.php', function()
-				{
-					$('#player-stats').slimtable();
-				});
-			}
-				break;
+			scope.currentSeasonId = $(this).attr('id');
 
-			case scope.UI_PLAYER_PROFILES:
-			{
-				$('#stats').load('stats/player-profiles.php');
-			}
-				break;
+			updateStatsUI(scope.currentIdx, scope.currentSeasonId, scope.currentTableId, false);
+		});
+	};
 
-			case scope.UI_TEAM_STATS:
-			{
-				$('#stats').load('stats/team-stats.php');
-			}
-				break;
+	function rightMenuClickHandler()
+	{
+		$('#right-menu ul li').click(function()
+		{
+			scope.currentTableId = $(this).attr('id');
 
-			case scope.UI_TEAM_PROFILES:
-			{
-				$('#stats').load('stats/team-profiles.php');
-			}
-				break;
+			updateStatsUI(scope.currentIdx, scope.currentSeasonId, scope.currentTableId, false);
+		});
+	};
 
-			case scope.UI_GAME_RESULTS:
-			{
-				$('#stats').load('stats/game-results.php');
-			}
-				break;
+	function updateStatsUI(idx, season, table, shouldLoadSideMenus)
+	{
+		var selector = '#stats';
+		var height = Math.max(1000, $('#stats table').height());
 
-			case scope.UI_HEAD_TO_HEAD:
-			{
-				$('#stats').load('stats/head-to-head.php');
-			}
-				break;
+		console.log(height);
 
-			case scope.UI_ACHIEVEMENTS:
-			{
-				$('#stats').load('stats/achievements.php');
-			}
-				break;
+		if (shouldLoadSideMenus)
+		{
+			selector = '#stats, #left-menu, #right-menu';
 		}
+
+		scope.currentIdx = idx;
+
+		// $(selector).fadeOut(1000, function()
+		$('#stats').animate(
+		{
+			marginTop: '-=' + height
+		}, 1000, function()
+		{
+			switch(idx)
+			{
+				case scope.UI_PLAYER_STATS:
+				{
+					if (shouldLoadSideMenus)
+					{
+						$('#left-menu').load('stats/left-menu.php', function()
+						{
+							$('#left-menu ul li').each(function(idx, li)
+							{
+								if ($(this).attr('id') == scope.currentSeasonId)
+								{
+									$(this).addClass('active');
+								}
+							});
+
+							$('#left-menu').fadeIn(1000, function()
+							{
+								leftMenuClickHandler();
+							});
+						});
+
+						$('#right-menu').load('stats/right-menu.php', function()
+						{
+							$('#right-menu ul li').each(function(idx, li)
+							{
+								if ($(this).attr('id') == scope.currentTableId)
+								{
+									$(this).addClass('active');
+								}
+							});
+
+							$('#right-menu').fadeIn(1000, function()
+							{
+								rightMenuClickHandler();
+							});
+						});
+					}
+					else
+					{
+						$('#left-menu ul li').each(function(idx, li)
+						{
+							$(this).removeClass('active');
+
+							if ($(this).attr('id') == scope.currentSeasonId)
+							{
+								$(this).addClass('active');
+							}
+						});
+
+						$('#right-menu ul li').each(function(idx, li)
+						{
+							$(this).removeClass('active');
+
+							if ($(this).attr('id') == scope.currentTableId)
+							{
+								$(this).addClass('active');
+							}
+						});
+					}
+
+					$('#stats').load('stats/player-stats.php?season=' + season + '&table=' + table, function()
+					{
+						$('#player-stats').slimtable();
+						$('#stats').animate(
+						{
+							marginTop: '+=' + height
+						}, 1000);
+					});
+				}
+					break;
+
+				case scope.UI_PLAYER_PROFILES:
+				{
+					$('#stats').load('stats/player-profiles.php');
+				}
+					break;
+
+				case scope.UI_TEAM_STATS:
+				{
+					$('#stats').load('stats/team-stats.php');
+				}
+					break;
+
+				case scope.UI_TEAM_PROFILES:
+				{
+					$('#stats').load('stats/team-profiles.php');
+				}
+					break;
+
+				case scope.UI_GAME_RESULTS:
+				{
+					$('#stats').load('stats/game-results.php');
+				}
+					break;
+
+				case scope.UI_HEAD_TO_HEAD:
+				{
+					$('#stats').load('stats/head-to-head.php');
+				}
+					break;
+
+				case scope.UI_ACHIEVEMENTS:
+				{
+					$('#stats').load('stats/achievements.php');
+				}
+					break;
+			}
+		});
 	};
 }

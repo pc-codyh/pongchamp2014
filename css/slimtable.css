@@ -1,10 +1,18 @@
 .slimtable-container-div {
 	display: inline-block;
+	margin: 0 auto;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	padding-bottom: 20px;
 }
 
 .slimtable {
 	border-collapse: collapse;
-	width: 1000px;
+	width: 600px;
+	font-size: 0.8em;
 }
 
 .slimtable th {
@@ -14,7 +22,7 @@
 	text-align: left;
 	height: 31px;
 	line-height: 17px;
-	padding: 2px 5px;
+	padding: 2px 15px;
 
 	-ms-user-select: none;
 	-moz-user-select: none;
@@ -28,7 +36,7 @@
 
 .slimtable td {
 	color: #222;
-	padding: 10px 5px;
+	padding: 10px 15px;
 }
 
 .slimtable tr:nth-child(even) {

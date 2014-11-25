@@ -17,11 +17,11 @@
 			dataUrl: null,
 
 			itemsPerPage: 10,
-			ipp_list: [5,10,20],
+			ipp_list: [5,10,20,50],
 
 			colSettings: [],
 
-			text1: "items/page",
+			text1: "Rows",
 			text2: "Loading...",
 
 			sortStartCB: null,
@@ -122,12 +122,12 @@
 			table_btn_container = t_obj2;
 
 			// Create container for select
-			// t_obj2 = document.createElement('div');
-			// $(t_obj2).addClass('slimtable-paging-seldiv');
+			t_obj2 = document.createElement('div');
+			$(t_obj2).addClass('slimtable-paging-seldiv');
 
-			// $(t_obj2).append(selector);
-			// $(t_obj2).append(settings.text1);
-			// $(t_obj1).append(t_obj2);
+			$(t_obj2).append(selector);
+			$(t_obj2).append(settings.text1);
+			$(t_obj1).append(t_obj2);
 
 			// Move table to container div
 			t_obj2 = document.createElement('div');
@@ -268,6 +268,11 @@
 			table_tbody.empty();
 			end_pos = end_pos > tbl_data.length ? tbl_data.length : end_pos;
 			pages = Math.ceil( tbl_data.length / items_per_page );
+
+			for (x = 0; x < tbl_data.length; x++)
+			{
+				tbl_data[x][0] = (x + 1);
+			}
 
 			//
 			for(l1=paging_start; l1<end_pos; l1++)
