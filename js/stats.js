@@ -2,15 +2,15 @@
 	this.UI_PLAYER_STATS 	= 0;
 	this.UI_PLAYER_PROFILES = 1;
 	this.UI_TEAM_STATS 		= 2;
-	this.UI_TEAM_PROFILES 	= 3;
-	this.UI_GAME_RESULTS 	= 4;
-	this.UI_HEAD_TO_HEAD 	= 5;
-	this.UI_ACHIEVEMENTS 	= 6;
+	this.UI_GAME_RESULTS 	= 3;
+	this.UI_ACHIEVEMENTS 	= 4;
 
 	this.username;
 	this.currentIdx;
 	this.currentSeasonId;
 	this.currentTableId;
+
+	this.shouldSelectFirstRow = false;
 
 	var scope = this;
 
@@ -24,7 +24,54 @@
 		categoriesClickHandler();
 		leftMenuClickHandler();
 		rightMenuClickHandler();
+
+		pageEventHandlers();
 	});
+
+	function pageEventHandlers()
+	{
+		var achArray = ['#a_ss', '#a_mj', '#a_tkcp', '#a_hc', '#a_snsn', '#a_ps', '#a_per', '#a_dbno', '#a_mar', '#a_fdm', '#a_ck', '#a_bb', '#a_bc', '#a_bank', '#a_skunk', '#a_sw', '#a_bd', '#a_sss', '#a_sk', '#a_mag', '#a_im', '#a_mark', '#a_sia'];
+		var achImgArray = ['#a_ss img', '#a_mj img', '#a_tkcp img', '#a_hc img', '#a_snsn img', '#a_ps img', '#a_per img', '#a_dbno img', '#a_mar img', '#a_fdm img', '#a_ck img', '#a_bb img', '#a_bc img', '#a_bank img', '#a_skunk img', '#a_sw img', '#a_bd img', '#a_sss img', '#a_sk img', '#a_mag img', '#a_im img', '#a_mark img', '#a_sia img'];
+		var milestoneArray = ['#m_gp', '#m_wins', '#m_cups', '#m_bounces', '#m_rs', '#m_lch', '#m_ae'];
+
+		$(window).scroll(function()
+		{
+			for (var i = 0; i < achArray.length; i++)
+			{
+				if (checkIfElementIsOnScreen(achArray[i]))
+				{
+					$(achImgArray[i]).addClass('onscreen');
+				}
+				else
+				{
+					$(achImgArray[i]).removeClass('onscreen');
+				}
+			}
+
+			for (var i = 0; i < milestoneArray.length; i++)
+			{
+				if (checkIfElementIsOnScreen(milestoneArray[i]))
+				{
+					$(milestoneArray[i]).addClass('onscreen');
+				}
+				else
+				{
+					$(milestoneArray[i]).removeClass('onscreen');
+				}
+			}
+		});
+	};
+
+	function checkIfElementIsOnScreen(elem)
+	{
+		var docViewTop = $(window).scrollTop();
+	    var docViewBottom = docViewTop + $(window).height();
+
+	    var elemTop = $(elem).offset().top;
+	    var elemBottom = elemTop + $(elem).height();
+
+	    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+	};
 
 	function myAccountClickHandler()
 	{
@@ -125,6 +172,11 @@
 
 					scope.currentSeasonId = 'overall';
 					scope.currentTableId = 'rank';
+
+					if (idx == 1)
+					{
+						scope.shouldSelectFirstRow = true;
+					}
 				}
 			});
 		});
@@ -153,9 +205,7 @@
 	function updateStatsUI(idx, season, table, shouldLoadSideMenus)
 	{
 		var selector = '#stats';
-		var height = Math.max(1000, $('#stats table').height());
-
-		console.log(height);
+		var height = Math.max(1000, ($('#stats').height() + 100));
 
 		if (shouldLoadSideMenus)
 		{
@@ -164,7 +214,6 @@
 
 		scope.currentIdx = idx;
 
-		// $(selector).fadeOut(1000, function()
 		$('#stats').animate(
 		{
 			marginTop: '-=' + height
@@ -176,59 +225,13 @@
 				{
 					if (shouldLoadSideMenus)
 					{
-						$('#left-menu').load('stats/left-menu.php', function()
-						{
-							$('#left-menu ul li').each(function(idx, li)
-							{
-								if ($(this).attr('id') == scope.currentSeasonId)
-								{
-									$(this).addClass('active');
-								}
-							});
-
-							$('#left-menu').fadeIn(1000, function()
-							{
-								leftMenuClickHandler();
-							});
-						});
-
-						$('#right-menu').load('stats/right-menu.php', function()
-						{
-							$('#right-menu ul li').each(function(idx, li)
-							{
-								if ($(this).attr('id') == scope.currentTableId)
-								{
-									$(this).addClass('active');
-								}
-							});
-
-							$('#right-menu').fadeIn(1000, function()
-							{
-								rightMenuClickHandler();
-							});
-						});
+						loadLeftMenu('stats/left-menu-player-stats.php');
+						loadRightMenu('stats/right-menu-player-stats.php');
 					}
 					else
 					{
-						$('#left-menu ul li').each(function(idx, li)
-						{
-							$(this).removeClass('active');
-
-							if ($(this).attr('id') == scope.currentSeasonId)
-							{
-								$(this).addClass('active');
-							}
-						});
-
-						$('#right-menu ul li').each(function(idx, li)
-						{
-							$(this).removeClass('active');
-
-							if ($(this).attr('id') == scope.currentTableId)
-							{
-								$(this).addClass('active');
-							}
-						});
+						refreshLeftMenu();
+						refreshRightMenu();
 					}
 
 					$('#stats').load('stats/player-stats.php?season=' + season + '&table=' + table, function()
@@ -237,38 +240,89 @@
 						$('#stats').animate(
 						{
 							marginTop: '+=' + height
-						}, 1000);
+						}, 1000, 'easeOutBack');
 					});
 				}
 					break;
 
 				case scope.UI_PLAYER_PROFILES:
 				{
-					$('#stats').load('stats/player-profiles.php');
+					if (shouldLoadSideMenus)
+					{
+						loadLeftMenu('stats/left-menu-player-profiles.php');
+						loadRightMenu('stats/right-menu-player-profiles.php');
+					}
+					else
+					{
+						refreshLeftMenu();
+						refreshRightMenu();
+					}
+
+					$('#stats').load('stats/player-profiles.php?season=' + season + '&player=' + encodeURIComponent(table), function()
+					{
+						$('#player-profiles-rank').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-record').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-shooting').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-streaks').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-redemption').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-racks').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-overtime').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-seasons').slimtable().next($('.slimtable-paging-div')).hide();
+						$('#player-profiles-games').slimtable();
+						$('.dial').knob({readOnly: true});
+						$('#stats').animate(
+						{
+							marginTop: '+=' + height
+						}, 1000, 'easeOutBack');
+					});
 				}
 					break;
 
 				case scope.UI_TEAM_STATS:
 				{
-					$('#stats').load('stats/team-stats.php');
-				}
-					break;
+					if (shouldLoadSideMenus)
+					{
+						loadLeftMenu('stats/left-menu-team-stats.php');
+						loadRightMenu('stats/right-menu-team-stats.php');
+					}
+					else
+					{
+						refreshLeftMenu();
+						refreshRightMenu();
+					}
 
-				case scope.UI_TEAM_PROFILES:
-				{
-					$('#stats').load('stats/team-profiles.php');
+					$('#stats').load('stats/team-stats.php', function()
+					{
+						$('#team-stats').slimtable();
+						$('#stats').animate(
+						{
+							marginTop: '+=' + height
+						}, 1000, 'easeOutBack');
+					});
 				}
 					break;
 
 				case scope.UI_GAME_RESULTS:
 				{
-					$('#stats').load('stats/game-results.php');
-				}
-					break;
+					if (shouldLoadSideMenus)
+					{
+						loadLeftMenu('stats/left-menu-game-results.php');
+						loadRightMenu('stats/right-menu-game-results.php');
+					}
+					else
+					{
+						refreshLeftMenu();
+						refreshRightMenu();
+					}
 
-				case scope.UI_HEAD_TO_HEAD:
-				{
-					$('#stats').load('stats/head-to-head.php');
+					$('#stats').load('stats/game-results.php?season=' + season, function()
+					{
+						$('#game-results').slimtable();
+						$('#stats').animate(
+						{
+							marginTop: '+=' + height
+						}, 1000, 'easeOutBack');
+					});
 				}
 					break;
 
@@ -279,5 +333,88 @@
 					break;
 			}
 		});
+
+		function loadLeftMenu(path)
+		{
+			$('#left-menu').animate(
+			{
+				left: '-190px'
+			}, 500, function()
+			{
+				$('#left-menu').load(path, function()
+				{
+					$('#left-menu ul li').each(function(idx, li)
+					{
+						if ($(this).attr('id') == scope.currentSeasonId)
+						{
+							$(this).addClass('active');
+						}
+					});
+
+					$('#left-menu').animate(
+					{
+						left: 0
+					}, 500, function()
+					{
+						leftMenuClickHandler();
+					});
+				});
+			});
+		};
+
+		function loadRightMenu(path)
+		{
+			$('#right-menu').animate(
+			{
+				right: '-190px'
+			}, 500, function()
+			{
+				$('#right-menu').load(path, function()
+				{
+					$('#right-menu ul li').each(function(idx, li)
+					{
+						if (($(this).attr('id') == scope.currentTableId) || (idx == 0 && scope.shouldSelectFirstRow))
+						{
+							$(this).addClass('active');
+							scope.shouldSelectFirstRow = false;
+						}
+					});
+
+					$('#right-menu').animate(
+					{
+						right: 0
+					}, 500, function()
+					{
+						rightMenuClickHandler();
+					});
+				});
+			});
+		};
+
+		function refreshLeftMenu()
+		{
+			$('#left-menu ul li').each(function(idx, li)
+			{
+				$(this).removeClass('active');
+
+				if ($(this).attr('id') == scope.currentSeasonId)
+				{
+					$(this).addClass('active');
+				}
+			});
+		};
+
+		function refreshRightMenu()
+		{
+			$('#right-menu ul li').each(function(idx, li)
+			{
+				$(this).removeClass('active');
+
+				if ($(this).attr('id') == scope.currentTableId)
+				{
+					$(this).addClass('active');
+				}
+			});
+		};
 	};
 }

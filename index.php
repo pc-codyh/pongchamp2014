@@ -7,6 +7,7 @@
 	<title>Pong Champ</title>
 	<link rel="stylesheet" href="css/pc.css" />
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/pc.js"></script>
 </head>
 <body>

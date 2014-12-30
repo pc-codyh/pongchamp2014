@@ -269,9 +269,12 @@
 			end_pos = end_pos > tbl_data.length ? tbl_data.length : end_pos;
 			pages = Math.ceil( tbl_data.length / items_per_page );
 
-			for (x = 0; x < tbl_data.length; x++)
+			if (tbl_data.length > 1)
 			{
-				tbl_data[x][0] = (x + 1);
+				for (x = 0; x < tbl_data.length; x++)
+				{
+					tbl_data[x][0] = (x + 1);
+				}
 			}
 
 			//

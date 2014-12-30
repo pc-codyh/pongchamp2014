@@ -9,14 +9,32 @@ $table	= $_GET['table'];
 
 if ($season == 'overall')
 {
-	$query = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `name` ASC';
+	$rankQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `rank` ASC';
+	$recordQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `games_played` DESC';
+	$shootingQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `shooting_percentage` DESC';
+	$streaksQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `win_streak` DESC';
+	$redemptionQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `redemp_shotperc` DESC';
+	$racksQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `p10` DESC';
+	$overtimeQuery = 'SELECT * FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `ot_games_played` DESC';
 }
 else
 {
-	$query = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `name` ASC';
+	$rankQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `rank` ASC';
+	$recordQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `games_played` DESC';
+	$shootingQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `shooting_percentage` DESC';
+	$streaksQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `win_streak` DESC';
+	$redemptionQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `redemp_shotperc` DESC';
+	$racksQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `p10` DESC';
+	$overtimeQuery = 'SELECT * FROM `'.$season.'` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `ot_games_played` DESC';
 }
 
-$runQuery = mysql_query($query);
+$runRankQuery = mysql_query($rankQuery);
+$runRecordQuery = mysql_query($recordQuery);
+$runShootingQuery = mysql_query($shootingQuery);
+$runStreaksQuery = mysql_query($streaksQuery);
+$runRedemptionQuery = mysql_query($redemptionQuery);
+$runRacksQuery = mysql_query($racksQuery);
+$runOvertimeQuery = mysql_query($overtimeQuery);
 
 ?>
 
@@ -119,98 +137,98 @@ $runQuery = mysql_query($query);
 		</tr>
 	</thead>
 	<tbody>
-		<?php for ($i = 0; $i < mysql_num_rows($runQuery); $i++) { ?>
+		<?php for ($i = 0; $i < mysql_num_rows($runRankQuery); $i++) { ?>
 		<tr>
 			<?php
 				if ($table == 'rank')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'rank')); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'elo_rating'), 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'compound_rating'), 2)); ?></td>
+					<td><?php echo(mysql_result($runRankQuery, $i, 'name')); ?></td>
+					<td><?php echo(mysql_result($runRankQuery, $i, 'rank')); ?></td>
+					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'elo_rating'), 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'compound_rating'), 2)); ?></td>
 					<?php
 				}
 				else if ($table == 'record')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'games_played')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'wins')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'losses')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'ot_losses')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'ot_games_played')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'cup_dif')); ?></td>
-					<td><?php if (mysql_result($runQuery, $i, 'games_played') > 0) { echo(number_format(mysql_result($runQuery, $i, 'wins') / mysql_result($runQuery, $i, 'games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'name')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'games_played')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'wins')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'losses')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'ot_losses')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'ot_games_played')); ?></td>
+					<td><?php echo(mysql_result($runRecordQuery, $i, 'cup_dif')); ?></td>
+					<td><?php if (mysql_result($runRecordQuery, $i, 'games_played') > 0) { echo(number_format(mysql_result($runRecordQuery, $i, 'wins') / mysql_result($runRecordQuery, $i, 'games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
 					<?php
 				}
 				else if ($table == 'shooting')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'shooting_percentage') * 100, 2)); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'shots')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'hits')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'bounces')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'gang_bangs')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'errors')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'heating_up')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'on_fire')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'h1')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'name')); ?></td>
+					<td><?php echo(number_format(mysql_result($runShootingQuery, $i, 'shooting_percentage') * 100, 2)); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'shots')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'hits')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'bounces')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'gang_bangs')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'errors')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'heating_up')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'on_fire')); ?></td>
+					<td><?php echo(mysql_result($runShootingQuery, $i, 'h1')); ?></td>
 					<?php
 				}
 				else if ($table == 'streaks')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'win_streak')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'loss_streak')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'hit_streak')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'miss_streak')); ?></td>
+					<td><?php echo(mysql_result($runStreaksQuery, $i, 'name')); ?></td>
+					<td><?php echo(mysql_result($runStreaksQuery, $i, 'win_streak')); ?></td>
+					<td><?php echo(mysql_result($runStreaksQuery, $i, 'loss_streak')); ?></td>
+					<td><?php echo(mysql_result($runStreaksQuery, $i, 'hit_streak')); ?></td>
+					<td><?php echo(mysql_result($runStreaksQuery, $i, 'miss_streak')); ?></td>
 					<?php
 				}
 				else if ($table == 'redemption')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'redemp_shotperc') * 100, 2)); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'redemp_shots')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'redemp_hits')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'redemp_atmps')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'redemp_succs')); ?></td>
+					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'name')); ?></td>
+					<td><?php echo(number_format(mysql_result($runRedemptionQuery, $i, 'redemp_shotperc') * 100, 2)); ?></td>
+					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_shots')); ?></td>
+					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_hits')); ?></td>
+					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_atmps')); ?></td>
+					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_succs')); ?></td>
 					<?php
 				}
 				else if ($table == 'racks')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p10') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p9') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p8') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p7') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p6') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p5') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p4') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p3') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p2') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runQuery, $i, 'p1') * 100, 2)); ?></td>
+					<td><?php echo(mysql_result($runRacksQuery, $i, 'name')); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p10') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p9') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p8') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p7') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p6') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p5') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p4') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p3') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p2') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p1') * 100, 2)); ?></td>
 					<?php
 				}
 				else if ($table == 'overtime')
 				{
 					?>
 					<td><?php echo($i + 1); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'name')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'ot_games_played')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'ot_games_played') - mysql_result($runQuery, $i, 'ot_losses')); ?></td>
-					<td><?php echo(mysql_result($runQuery, $i, 'ot_losses')); ?></td>
-					<td><?php if (mysql_result($runQuery, $i, 'ot_games_played') > 0) { echo(number_format((mysql_result($runQuery, $i, 'ot_games_played') - mysql_result($runQuery, $i, 'ot_losses')) / mysql_result($runQuery, $i, 'ot_games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'name')); ?></td>
+					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_games_played')); ?></td>
+					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_games_played') - mysql_result($runOvertimeQuery, $i, 'ot_losses')); ?></td>
+					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_losses')); ?></td>
+					<td><?php if (mysql_result($runOvertimeQuery, $i, 'ot_games_played') > 0) { echo(number_format((mysql_result($runOvertimeQuery, $i, 'ot_games_played') - mysql_result($runOvertimeQuery, $i, 'ot_losses')) / mysql_result($runOvertimeQuery, $i, 'ot_games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
 					<?php
 				}
 			?>

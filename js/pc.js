@@ -25,7 +25,34 @@
 		getUserData();
 		modalClickHandlers();
 		modalActionClickHandlers();
+
+		introAnimations();
 	});
+
+	function introAnimations()
+	{
+		$('#landing .inner').animate(
+		{
+			marginTop: '-160px',
+			opacity: 1
+		}, 1200, 'easeOutBack', function()
+		{
+			$('#landing h1').animate(
+			{
+				marginRight: 0,
+				opacity: 1
+			}, 1200, 'easeOutBack');
+
+			$('#landing .sub').animate(
+			{
+				marginLeft: 0,
+				opacity: 1
+			}, 1200, 'easeOutBack', function()
+			{
+				$('#landing .buttons, #components, #download, #footer').fadeIn(2400);
+			});
+		});
+	};
 
 	function getUserData()
 	{

@@ -4,13 +4,17 @@ session_start();
 
 require '../database-connect.php';
 
-$query = 'SELECT * FROM `teams` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `games_played` DESC';
+$sharpshooterQuery = 'SELECT `a_shs` FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'" ORDER BY `a_shs` DESC';
 
-$runQuery = mysql_query($query);
+$runSharpshooterQuery = mysql_query($sharpshooterQuery);
+
+$maxSharpshooters = mysql_result($runSharpshooterQuery, 0);
 
 ?>
 
-<table id="team-stats">
+
+
+<!-- <table id="sharpshooter">
 	<thead>
 		<tr>
 			<th>ROW</th>
@@ -39,4 +43,4 @@ $runQuery = mysql_query($query);
 		</tr>
 		<?php }; ?>
 	</tbody>
-</table>
+</table> -->

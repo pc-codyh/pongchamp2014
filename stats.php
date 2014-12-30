@@ -46,6 +46,8 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type='text/javascript' src='js/slimtable.js'></script>
 	<script type="text/javascript" src="js/stats.js"></script>
+	<script type="text/javascript" src="js/jquery.knob.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 </head>
 <body>
 	<div id="nav-bar">
@@ -55,9 +57,7 @@
 			<li>Player Stats</li>
 			<li>Player Profiles</li>
 			<li>Team Stats</li>
-			<li>Team Profiles</li>
 			<li>Game Results</li>
-			<li>Head To Head</li>
 			<li>Achievements</li>
 		</ul>
 		<div class="account">

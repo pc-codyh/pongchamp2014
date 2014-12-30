@@ -29,8 +29,9 @@ body {
   width: 100%;
   position: absolute;
   top: 50%;
-  margin-top: -160px;
-  left: 0; }
+  margin-top: -235px;
+  left: 0;
+  opacity: 0; }
 
 #logo {
   display: block;
@@ -40,15 +41,21 @@ body {
 #landing h1 {
   font-size: 2em;
   font-weight: 900;
-  margin: 0.1em 0 0; }
+  margin: 0.1em 150px 0.1em 0;
+  opacity: 0; }
 
 #landing .sub {
   color: #333;
-  font-size: 1em; }
+  font-size: 1em;
+  opacity: 0;
+  margin: 0.75em 0 0.75em 150px; }
 
 #landing .button {
   width: 120px;
   margin: 0.5em; }
+
+#landing .buttons {
+  display: none; }
 
 a.button {
   display: inline-block;
@@ -77,7 +84,8 @@ a.button:hover {
   padding: 4em 0;
   background-color: #A00000;
   color: white;
-  text-align: center; }
+  text-align: center;
+  display: none; }
 
 #download h2 {
   margin-top: 0;
@@ -102,7 +110,8 @@ a.button:hover {
   text-align: center;
   color: white;
   padding: 4em 0;
-  background-color: #333; }
+  background-color: #333;
+  display: none; }
 
 #footer h3 {
   margin-top: 0;
@@ -297,7 +306,8 @@ a.button:hover {
   background: #EEE;
   color: #444;
   padding: 2em 0;
-  text-align: center; }
+  text-align: center;
+  display: none; }
 
 #components ul {
   list-style: none;
@@ -314,13 +324,13 @@ a.button:hover {
 
 /* STATS CSS */
 #nav-bar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 0.5em 0;
   background: #EEE;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 15px black;
   z-index: 10; }
 
 #nav-bar h2 {
@@ -352,6 +362,7 @@ a.button:hover {
   padding: 0.4em 0;
   border-bottom: 1px solid;
   border-color: transparent;
+  font-weight: bold;
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease; }
@@ -526,6 +537,77 @@ a.button:hover {
 #stats {
   padding: 20px;
   margin-top: 70px; }
+  #stats #rank-header-container {
+    width: 600px;
+    margin: 15px auto;
+    min-height: 40px;
+    margin-bottom: 10px; }
+    #stats #rank-header-container img {
+      width: 40px;
+      float: left; }
+    #stats #rank-header-container div.rank {
+      position: absolute;
+      width: 40px;
+      text-align: center;
+      transform: translate(0, 5px);
+      -webkit-transform: translate(0, 5px);
+      -moz-transform: translate(0, 5px); }
+    #stats #rank-header-container div.name {
+      font-size: 1.8em;
+      transform: translate(10px, 2px);
+      -webkit-transform: translate(10px, 2px);
+      -moz-transform: translate(10px, 2px); }
+  #stats ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    #stats ul li {
+      list-style-type: none; }
+      #stats ul li ul {
+        width: 600px;
+        margin: 0 auto -110px auto;
+        padding: 0; }
+      #stats ul li ul.ach {
+        margin: 0 auto; }
+      #stats ul li ul li {
+        display: inline-block;
+        width: 48%;
+        margin: 0;
+        padding: 0; }
+        #stats ul li ul li canvas {
+          float: left; }
+        #stats ul li ul li img {
+          width: 50px;
+          height: 50px;
+          float: left;
+          transform: rotateY(180deg);
+          -webkit-transform: rotateY(180deg);
+          -moz-transform: rotateY(180deg);
+          transition: all 1s ease;
+          -webkit-transition: all 1s ease;
+          -moz-transition: all 1s ease;
+          border-radius: 25px;
+          -ms-border-radius: 25px;
+          -moz-border-radius: 25px;
+          -o-border-raidus: 25px; }
+        #stats ul li ul li img.onscreen {
+          cursor: pointer;
+          transform: rotateY(0deg);
+          -webkit-transform: rotateY(0deg);
+          -moz-transform: rotateY(0deg); }
+        #stats ul li ul li h3.ach, #stats ul li ul li h4, #stats ul li ul li h6 {
+          margin: 0 0 0 60px;
+          padding: 0; }
+        #stats ul li ul li h3.ach {
+          padding-top: 6px; }
+        #stats ul li ul li h4 {
+          color: #A00000; }
+        #stats ul li ul li h5 {
+          margin: 0 0 10px 0;
+          padding: 0; }
+        #stats ul li ul li h6 {
+          margin: 10px 0;
+          color: #999; }
 
 #left-menu {
   left: 0; }
@@ -561,10 +643,43 @@ a.button:hover {
         float: left; }
       .side-menu ul li div {
         margin: -1px 0 0 0; }
+      .side-menu ul li .player-rank {
+        position: absolute;
+        font-size: 7px;
+        transform: translate(147px, -16px);
+        -webkit-transform: translate(147px, -16px);
+        -moz-transform: translate(147px, -16px);
+        text-align: center;
+        width: 10px; }
     .side-menu ul li:hover {
       opacity: 1;
       cursor: pointer; }
     .side-menu ul li.active {
       opacity: 1; }
+
+.section-header {
+  width: 600px;
+  margin: 1em auto 0.5em auto;
+  padding: 0 0 0.2em 0;
+  border-bottom: 1px solid #EAEAEA; }
+
+.dial-container {
+  opacity: 0;
+  transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease; }
+  .dial-container h3 {
+    font-size: 0.9em;
+    margin-left: 90px;
+    padding-top: 30px; }
+
+.dial-container.onscreen {
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1); }
 
 /*# sourceMappingURL=pc.css.map */

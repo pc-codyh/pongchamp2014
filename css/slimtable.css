@@ -1,18 +1,18 @@
 .slimtable-container-div {
-	display: inline-block;
-	margin: 0 auto;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	padding-bottom: 20px;
+	display: block;
+	margin: 15px auto;
+	width: 600px;
 }
 
 .slimtable {
 	border-collapse: collapse;
 	width: 600px;
 	font-size: 0.8em;
+	border: 1px solid #EAEAEA;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
 }
 
 .slimtable th {
@@ -22,7 +22,7 @@
 	text-align: left;
 	height: 31px;
 	line-height: 17px;
-	padding: 2px 15px;
+	padding: 2px 12px;
 
 	-ms-user-select: none;
 	-moz-user-select: none;
@@ -36,14 +36,14 @@
 
 .slimtable td {
 	color: #222;
-	padding: 10px 15px;
+	padding: 10px 12px;
 }
 
 .slimtable tr:nth-child(even) {
-	background-color: #FAFAFA;
 }
 
-.slimtable tr:nth-child(odd) {
+.slimtable tbody tr:nth-child(odd) {
+	background-color: #FAFAFA;
 }
 
 .slimtable tr
