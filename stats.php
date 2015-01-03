@@ -5,34 +5,49 @@
 
 	$MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-	$username = $_POST['username'];
 	$userID;
 
 	$queries 	  = [];
 	$queryResults = [];
 
-	$query = 'SELECT `id` FROM `registrations` WHERE `username`="'.$username.'"';
-
-	if ($runQuery = mysql_query($query))
+	if (!isset($_SESSION['userID']))
 	{
-		$userID = mysql_result($runQuery, 0, 'id');
-		$_SESSION['userID'] = $userID;
-
-		// Date registered.
-		$queries[0] = 'SELECT `date` FROM `registrations` WHERE `id`="'.$userID.'"';
-		// League games played.
-		$queries[1] = 'SELECT COUNT(*) FROM `games` WHERE `id_registrations`="'.$userID.'"';
-		// League players count.
-		$queries[2] = 'SELECT COUNT(*) FROM `players` WHERE `id_registrations`="'.$userID.'"';
-		// Beers drank. 5 hits = 1 beer.
-		$queries[3] = 'SELECT SUM(`hits`) FROM `players` WHERE `id_registrations`="'.$userID.'"';
-		// Icon URL.
-		$queries[4] = 'SELECT `icon-url` FROM `registrations` WHERE `id`="'.$userID.'"';
-
-		for ($i = 0; $i < count($queries); $i++)
+		if (!isset($_POST['username']))
 		{
-			$queryResults[$i] = mysql_query($queries[$i]);
+			session_unset();
+			session_destroy();
+
+			header('Location: /Workspace/PongChamp/Web/3.0/index.php');
 		}
+		else
+		{
+			$username = $_POST['username'];		
+
+			$query = 'SELECT `id` FROM `registrations` WHERE `username`="'.$username.'"';
+
+			if ($runQuery = mysql_query($query))
+			{
+				$userID = mysql_result($runQuery, 0, 'id');
+				$_SESSION['userID'] = $userID;	
+				$_SESSION['username'] = $username;	
+			}
+		}
+	}
+
+	// Date registered.
+	$queries[0] = 'SELECT `date` FROM `registrations` WHERE `id`="'.$_SESSION['userID'].'"';
+	// League games played.
+	$queries[1] = 'SELECT COUNT(*) FROM `games` WHERE `id_registrations`="'.$_SESSION['userID'].'"';
+	// League players count.
+	$queries[2] = 'SELECT COUNT(*) FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'"';
+	// Beers drank. 5 hits = 1 beer.
+	$queries[3] = 'SELECT SUM(`hits`) FROM `players` WHERE `id_registrations`="'.$_SESSION['userID'].'"';
+	// Icon URL.
+	$queries[4] = 'SELECT `icon-url` FROM `registrations` WHERE `id`="'.$_SESSION['userID'].'"';
+
+	for ($i = 0; $i < count($queries); $i++)
+	{
+		$queryResults[$i] = mysql_query($queries[$i]);
 	}
 ?>
 
@@ -54,14 +69,14 @@
 		<img id="nav-logo" src="img/pongchamp.png" alt="PC" />
 		<h2>Pong Champ</h2>
 		<ul class="categories">
-			<li>Player Stats</li>
-			<li>Player Profiles</li>
-			<li>Team Stats</li>
-			<li>Game Results</li>
-			<li>Achievements</li>
+			<li><img src="img/player-stats-icon.png" /><br>Player Stats</li>
+			<li><img src="img/player-profiles-icon.png" /><br>Player Profiles</li>
+			<li><img src="img/team-stats-icon.png" /><br>Team Stats</li>
+			<li><img src="img/game-results-icon.png" /><br>Game Results</li>
+			<li><img src="img/achievements-icon.png" /><br>Achievements</li>
 		</ul>
 		<div class="account">
-			<div class="username"><?php echo($username); ?></div>
+			<div class="username"><?php echo($_SESSION['username']); ?></div>
 			<div class="options"><a id="my-account" href="#">My account</a> | <a id="my-logout" href="#">Logout</a></div>
 		</div>
 		<div class="icon"><img src=<?php echo(mysql_result($queryResults[4], 0)); ?> /></div>

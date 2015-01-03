@@ -66,6 +66,9 @@ for ($i = 0; $i < mysql_num_rows($runSeasonQuery); $i++)
 
 $runGamesQuery = mysql_query($gamesQuery);
 
+if (mysql_num_rows($runQuery) > 0)
+{
+
 ?>
 
 <div id="rank-header-container">
@@ -74,7 +77,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 	<div class="name"><?php echo mysql_result($runQuery, 0, 'name') ?></div>
 </div>
 
-<h2 id="player-profiles-stats-title" class="section-header">Stats</h2>
+<h2 id="player-profiles-stats-title" class="section-header"><img src="img/stats-header.png" style="width: 23px; height: 20px; margin: 0 5px 0 0;" />Stats</h2>
 
 <table id="player-profiles-rank">
 	<thead>
@@ -87,8 +90,8 @@ $runGamesQuery = mysql_query($gamesQuery);
 	<tbody>
 		<tr>
 			<td><?php echo(mysql_result($runQuery, 0, 'rank')); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'elo_rating'), 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'compound_rating'), 2)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'elo_rating'), 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'compound_rating'), 0)); ?></td>
 		</tr>
 	</tbody>
 </table>
@@ -113,7 +116,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 			<td><?php echo(mysql_result($runQuery, 0, 'ot_losses')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'ot_games_played')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'cup_dif')); ?></td>
-			<td><?php if (mysql_result($runQuery, 0, 'games_played') > 0) { echo(number_format(mysql_result($runQuery, 0, 'wins') / mysql_result($runQuery, 0, 'games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+			<td><?php if (mysql_result($runQuery, 0, 'games_played') > 0) { echo(number_format(mysql_result($runQuery, 0, 'wins') / mysql_result($runQuery, 0, 'games_played') * 100, 0).'%'); } else { echo(number_format(0, 0).'%'); } ?></td>
 		</tr>
 	</tbody>
 </table>
@@ -134,7 +137,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 	</thead>
 	<tbody>
 		<tr>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'shooting_percentage') * 100, 2)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'shooting_percentage') * 100, 0).'%'); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'shots')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'hits')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'bounces')); ?></td>
@@ -178,7 +181,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 	</thead>
 	<tbody>
 		<tr>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'redemp_shotperc') * 100, 2)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'redemp_shotperc') * 100, 0).'%'); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'redemp_shots')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'redemp_hits')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'redemp_atmps')); ?></td>
@@ -204,16 +207,16 @@ $runGamesQuery = mysql_query($gamesQuery);
 	</thead>
 	<tbody>
 		<tr>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p10') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p9') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p8') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p7') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p6') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p5') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p4') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p3') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p2') * 100, 2)); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p1') * 100, 2)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p10') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p9') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p8') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p7') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p6') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p5') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p4') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p3') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p2') * 100, 0)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, 0, 'p1') * 100, 0)); ?></td>
 		</tr>
 	</tbody>
 </table>
@@ -232,7 +235,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 			<td><?php echo(mysql_result($runQuery, 0, 'ot_games_played')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'ot_games_played') - mysql_result($runQuery, 0, 'ot_losses')); ?></td>
 			<td><?php echo(mysql_result($runQuery, 0, 'ot_losses')); ?></td>
-			<td><?php if (mysql_result($runQuery, 0, 'ot_games_played') > 0) { echo(number_format((mysql_result($runQuery, 0, 'ot_games_played') - mysql_result($runQuery, 0, 'ot_losses')) / mysql_result($runQuery, 0, 'ot_games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+			<td><?php if (mysql_result($runQuery, 0, 'ot_games_played') > 0) { echo(number_format((mysql_result($runQuery, 0, 'ot_games_played') - mysql_result($runQuery, 0, 'ot_losses')) / mysql_result($runQuery, 0, 'ot_games_played') * 100, 0).'%'); } else { echo(number_format(0, 0).'%'); } ?></td>
 		</tr>
 	</tbody>
 </table>
@@ -266,8 +269,8 @@ $runGamesQuery = mysql_query($gamesQuery);
 						<td><?php echo(mysql_result($seasonStats[$i][0], 0, 'losses')); ?></td>
 						<td><?php echo(mysql_result($seasonStats[$i][0], 0, 'ot_losses')); ?></td>
 						<td><?php echo(mysql_result($seasonStats[$i][0], 0, 'cup_dif')); ?></td>
-						<td><?php if (mysql_result($seasonStats[$i][0], 0, 'games_played') > 0) { echo(number_format(mysql_result($seasonStats[$i][0], 0, 'wins') / mysql_result($seasonStats[$i][0], 0, 'games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
-						<td><?php echo(number_format(mysql_result($seasonStats[$i][0], 0, 'shooting_percentage') * 100, 2)); ?></td>
+						<td><?php if (mysql_result($seasonStats[$i][0], 0, 'games_played') > 0) { echo(number_format(mysql_result($seasonStats[$i][0], 0, 'wins') / mysql_result($seasonStats[$i][0], 0, 'games_played') * 100, 0).'%'); } else { echo(number_format(0, 0).'%'); } ?></td>
+						<td><?php echo(number_format(mysql_result($seasonStats[$i][0], 0, 'shooting_percentage') * 100, 0).'%'); ?></td>
 					</tr>
 					<?php
 				}
@@ -276,7 +279,7 @@ $runGamesQuery = mysql_query($gamesQuery);
 	</tbody>
 </table>
 
-<h2 id="milestones-title" class="section-header">Milestones</h2>
+<h2 id="milestones-title" class="section-header"><img src="img/milestones.png" style="width: 24px; height: 18px; margin: 0 5px 0 0;" />Milestones</h2>
 
 <?php
 $gamesPlayed 		= min(200, mysql_result($runQuery, 0, 'games_played'));
@@ -350,7 +353,7 @@ $achievementsEarned = min(100, mysql_result($runQuery, 0, 'games_played'));
 	</li>
 </ul>
 
-<h2 id="achievements-title" class="section-header">Achievements</h2>
+<h2 id="achievements-title" class="section-header"><img src="img/achievements.png" style="width: 26px; height: 20px; margin: 0 5px 0 0;" />Achievements</h2>
 
 <ul>
 	<li>
@@ -726,9 +729,9 @@ $achievementsEarned = min(100, mysql_result($runQuery, 0, 'games_played'));
 	</li>
 </ul>
 
-<h2 id="results-title" class="section-header">Results</h2>
+<h2 id="results-title" class="section-header"><img src="img/results.png" style="width: 20px; height: 20px; margin: 0 5px 0 0;" />Results</h2>
 
-<table id="player-profiles-games">
+<table id="player-profiles-games" class="always-visible">
 	<thead>
 		<tr>
 			<th>ROW</th>
@@ -775,3 +778,23 @@ $achievementsEarned = min(100, mysql_result($runQuery, 0, 'games_played'));
 		?>
 	</tbody>
 </table>
+
+<?php 
+
+}
+else
+{
+
+?>
+
+<div id="rank-header-container" style="border-bottom: 1px solid #A00000; padding: 0 0 0.5em 0;">
+	<img src="img/rank.png" />
+	<div class="name"><?php echo $player; ?></div>
+</div>
+<h4 class="nobody">No stats available for this season</h4>
+
+<?php
+
+}
+
+?>

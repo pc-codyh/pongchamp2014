@@ -19,7 +19,7 @@ $runQuery = mysql_query($query);
 
 			echo '<li id="'.$name.'">';
 			echo '<img src="img/player-rank.png" style="float: right;" />';
-			echo '<div style="margin: -1px 22px 0 0;">';
+			echo '<div style="margin: 0 19px 0 0;">';
 			echo $name;
 			echo '</div>';
 			echo '<div class="player-rank">'.$rank.'</div>';

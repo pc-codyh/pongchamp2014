@@ -10,7 +10,7 @@ $runQuery = mysql_query($query);
 
 <ul>
 	<?php 
-		echo '<li id="overall"><img src="img/overall.png" /><div style="margin: -1px 0 0 22px;">Overall</div></li>';
+		echo '<li id="overall"><img src="img/overall.png" /><div style="margin: 0 0 0 19px;">Overall</div></li>';
 
 		for ($i = 0; $i < mysql_num_rows($runQuery); $i++)
 		{
@@ -45,7 +45,7 @@ $runQuery = mysql_query($query);
 				echo '<img src="img/spring.png" />';
 			}
 
-			echo '<div style="margin: -1px 0 0 22px;">';
+			echo '<div style="margin: 0 0 0 19px;">';
 			echo $season;
 			echo '</div>';
 

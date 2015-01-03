@@ -19,7 +19,9 @@ $runGamesQuery = mysql_query($gamesQuery);
 
 ?>
 
-<table id="game-results">
+<h2 id="game-results-title" class="section-header"><img src="img/results.png" style="width: 20px; height: 20px; margin: 0 5px 0 0;" />Results</h2>
+
+<table id="game-results" class="always-visible">
 	<thead>
 		<tr>
 			<th>ROW</th>

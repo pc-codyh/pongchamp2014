@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); session_unset(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
 	<div id="download">
 		<h2>Download the app today for:</h2>
 		<p class="buttons">
-			<a href="#"><img src="img/android.png" alt="Android" /></a>
+			<a href="https://play.google.com/store/apps/details?id=com.pongchamp.pc" target="_blank"><img src="img/android.png" alt="Android" /></a>
 			<a href="#"><img src="img/ios.png" alt="Android" /></a>
 		</p>
 	</div>
@@ -42,11 +42,6 @@
 			<a href="http://en.wikipedia.org/wiki/Beer_pong" target="_blank" class="button">Find out more</a>
 		</p>
 		<p class="copy">Copyright &copy; 2014. All Rights Reserved.</p>
-		<ul>
-			<li><img src="img/facebook.png" /></li>
-			<li><img src="img/twitter.png" /></li>
-			<li><img src="img/instagram.png" /></li>
-		</ul>
 	</div>
 	<div id="modal">
 		<div class="close"></div>

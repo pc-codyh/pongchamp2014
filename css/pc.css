@@ -16,7 +16,8 @@ body {
   font-family: 'Raleway', sans-serif;
   -webkit-backface-visibility: hidden;
   height: 100%;
-  margin: 0; }
+  margin: 0;
+  background: url(../img/cream_dust.png); }
 
 #landing {
   text-align: center;
@@ -347,7 +348,7 @@ a.button:hover {
 
 #nav-bar .categories {
   list-style: none;
-  margin: 0;
+  margin: -3px 0 0 0;
   padding: 0;
   font-size: 0.8em;
   position: absolute;
@@ -359,13 +360,23 @@ a.button:hover {
 #nav-bar .categories li {
   display: inline-block;
   margin: 0 0.25em;
-  padding: 0.4em 0;
+  padding: 0 0 0.25em 0;
   border-bottom: 1px solid;
   border-color: transparent;
   font-weight: bold;
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease; }
+  -moz-transition: all 0.5s ease;
+  text-align: center;
+  font-size: 0.8em; }
+  #nav-bar .categories li img {
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 2px black;
+    border-radius: 15px;
+    -ms-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -o-border-raidus: 15px; }
 
 #nav-bar .categories li:hover {
   cursor: pointer;
@@ -408,7 +419,9 @@ a.button:hover {
 #nav-bar .icon img {
   width: 40px;
   height: 40px;
-  border-radius: 20px; }
+  border-radius: 21px;
+  border: 1px solid black;
+  box-shadow: 0 0 3px black; }
 
 #nav-bar .account-info {
   position: absolute;
@@ -554,6 +567,7 @@ a.button:hover {
       -moz-transform: translate(0, 5px); }
     #stats #rank-header-container div.name {
       font-size: 1.8em;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
       transform: translate(10px, 2px);
       -webkit-transform: translate(10px, 2px);
       -moz-transform: translate(10px, 2px); }
@@ -574,27 +588,30 @@ a.button:hover {
         width: 48%;
         margin: 0;
         padding: 0; }
+        #stats ul li ul li div.ach-container {
+          opacity: 0;
+          transform: scale(0.75);
+          -webkit-transform: scale(0.75);
+          -moz-transform: scale(0.75);
+          transition: all 1s ease;
+          -webkit-transition: all 1s ease;
+          -moz-transition: all 1s ease; }
+        #stats ul li ul li div.ach-container.onscreen {
+          opacity: 1;
+          transform: scale(1);
+          -webkit-transform: scale(1);
+          -moz-transform: scale(1); }
         #stats ul li ul li canvas {
           float: left; }
         #stats ul li ul li img {
           width: 50px;
           height: 50px;
           float: left;
-          transform: rotateY(180deg);
-          -webkit-transform: rotateY(180deg);
-          -moz-transform: rotateY(180deg);
-          transition: all 1s ease;
-          -webkit-transition: all 1s ease;
-          -moz-transition: all 1s ease;
           border-radius: 25px;
           -ms-border-radius: 25px;
           -moz-border-radius: 25px;
-          -o-border-raidus: 25px; }
-        #stats ul li ul li img.onscreen {
-          cursor: pointer;
-          transform: rotateY(0deg);
-          -webkit-transform: rotateY(0deg);
-          -moz-transform: rotateY(0deg); }
+          -o-border-raidus: 25px;
+          box-shadow: 0 0 5px black; }
         #stats ul li ul li h3.ach, #stats ul li ul li h4, #stats ul li ul li h6 {
           margin: 0 0 0 60px;
           padding: 0; }
@@ -610,58 +627,72 @@ a.button:hover {
           color: #999; }
 
 #left-menu {
-  left: 0; }
+  left: 0px; }
 
 #right-menu {
-  right: 0;
+  right: 0px;
   text-align: right; }
 
 .side-menu {
   position: absolute;
-  top: 70px;
+  top: 75px;
   width: 160px;
-  height: 300px;
   padding: 20px 30px; }
   .side-menu ul {
     margin: 0;
     padding: 10px 0;
     list-style: none; }
     .side-menu ul li {
-      margin: 0;
+      margin: -1px 0 0 0;
       padding: 8px 0;
       list-style-type: none;
       color: black;
-      opacity: 0.2;
-      border-bottom: 1px solid #DDD;
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+      border-color: rgba(160, 0, 0, 0);
       transition: all 0.5s ease;
       -webkit-transition: all 0.5s ease;
       -moz-transition: all 0.5s ease; }
       .side-menu ul li img {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         vertical-align: middle;
         float: left; }
       .side-menu ul li div {
-        margin: -1px 0 0 0; }
+        margin: -1px 0 0 0;
+        font-size: 0.8em;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.25); }
       .side-menu ul li .player-rank {
         position: absolute;
-        font-size: 7px;
-        transform: translate(147px, -16px);
-        -webkit-transform: translate(147px, -16px);
-        -moz-transform: translate(147px, -16px);
+        font-size: 5px;
+        transform: translate(148px, -12px);
+        -webkit-transform: translate(148px, -12px);
+        -moz-transform: translate(148px, -12px);
         text-align: center;
         width: 10px; }
     .side-menu ul li:hover {
-      opacity: 1;
-      cursor: pointer; }
+      cursor: pointer;
+      border-top: 1px solid #A00000;
+      border-bottom: 1px solid #A00000; }
     .side-menu ul li.active {
-      opacity: 1; }
+      border-top: 1px solid #A00000;
+      border-bottom: 1px solid #A00000; }
 
 .section-header {
   width: 600px;
   margin: 1em auto 0.5em auto;
   padding: 0 0 0.2em 0;
-  border-bottom: 1px solid #EAEAEA; }
+  border-bottom: 1px solid #A00000; }
+
+h6.section-subheader {
+  width: 600px;
+  color: #999;
+  margin: 0 auto 12px auto; }
+
+h4.nobody {
+  font-size: 1.5em;
+  width: 600px;
+  margin: 0 auto; }
 
 .dial-container {
   opacity: 0;
@@ -681,5 +712,43 @@ a.button:hover {
   transform: scale(1);
   -webkit-transform: scale(1);
   -moz-transform: scale(1); }
+
+.always-visible {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  -webkit-transform: scale(1) !important;
+  -moz-transform: scale(1) !important; }
+
+.ach-row-container {
+  width: 600px;
+  height: 40px;
+  margin: 12px auto; }
+  .ach-row-container .bar {
+    position: absolute;
+    width: 560px;
+    height: 20px;
+    background: #EEE; }
+    .ach-row-container .bar .fill {
+      position: absolute;
+      width: 0;
+      height: 100%;
+      background: #A00000;
+      z-index: 1;
+      border: 1px solid black;
+      opacity: 0;
+      box-shadow: 0 0 5px black; }
+      .ach-row-container .bar .fill .row {
+        position: absolute;
+        right: 100%;
+        margin: -2px 8px 0 0;
+        font-size: 1.1em;
+        font-weight: bold; }
+      .ach-row-container .bar .fill .val {
+        position: absolute;
+        left: 100%;
+        margin: 2px 0 0 10px; }
+    .ach-row-container .bar .name {
+      position: absolute;
+      top: 125%; }
 
 /*# sourceMappingURL=pc.css.map */

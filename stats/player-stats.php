@@ -38,7 +38,9 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 
 ?>
 
-<table id="player-stats">
+<h2 id="player-stats-title" class="section-header"><img src="img/<?php echo $table; ?>.png" style="width: 20px; height: 20px; margin: 0 5px 0 0;" /><?php echo ucwords($table); ?></h2>
+
+<table id="player-stats" class="always-visible">
 	<thead>
 		<tr>
 			<?php
@@ -146,8 +148,8 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					<td><?php echo($i + 1); ?></td>
 					<td><?php echo(mysql_result($runRankQuery, $i, 'name')); ?></td>
 					<td><?php echo(mysql_result($runRankQuery, $i, 'rank')); ?></td>
-					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'elo_rating'), 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'compound_rating'), 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'elo_rating'), 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRankQuery, $i, 'compound_rating'), 0)); ?></td>
 					<?php
 				}
 				else if ($table == 'record')
@@ -160,8 +162,8 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					<td><?php echo(mysql_result($runRecordQuery, $i, 'losses')); ?></td>
 					<td><?php echo(mysql_result($runRecordQuery, $i, 'ot_losses')); ?></td>
 					<td><?php echo(mysql_result($runRecordQuery, $i, 'ot_games_played')); ?></td>
-					<td><?php echo(mysql_result($runRecordQuery, $i, 'cup_dif')); ?></td>
-					<td><?php if (mysql_result($runRecordQuery, $i, 'games_played') > 0) { echo(number_format(mysql_result($runRecordQuery, $i, 'wins') / mysql_result($runRecordQuery, $i, 'games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+					<td><?php if (mysql_result($runRecordQuery, $i, 'cup_dif') > 0) { echo '+'; } echo(mysql_result($runRecordQuery, $i, 'cup_dif')); ?></td>
+					<td><?php if (mysql_result($runRecordQuery, $i, 'games_played') > 0) { echo(number_format(mysql_result($runRecordQuery, $i, 'wins') / mysql_result($runRecordQuery, $i, 'games_played') * 100, 0).'%'); } else { echo(number_format(0, 0).'%'); } ?></td>
 					<?php
 				}
 				else if ($table == 'shooting')
@@ -169,7 +171,7 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					?>
 					<td><?php echo($i + 1); ?></td>
 					<td><?php echo(mysql_result($runShootingQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runShootingQuery, $i, 'shooting_percentage') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runShootingQuery, $i, 'shooting_percentage') * 100, 0).'%'); ?></td>
 					<td><?php echo(mysql_result($runShootingQuery, $i, 'shots')); ?></td>
 					<td><?php echo(mysql_result($runShootingQuery, $i, 'hits')); ?></td>
 					<td><?php echo(mysql_result($runShootingQuery, $i, 'bounces')); ?></td>
@@ -196,7 +198,7 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					?>
 					<td><?php echo($i + 1); ?></td>
 					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runRedemptionQuery, $i, 'redemp_shotperc') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRedemptionQuery, $i, 'redemp_shotperc') * 100, 0).'%'); ?></td>
 					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_shots')); ?></td>
 					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_hits')); ?></td>
 					<td><?php echo(mysql_result($runRedemptionQuery, $i, 'redemp_atmps')); ?></td>
@@ -208,16 +210,16 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					?>
 					<td><?php echo($i + 1); ?></td>
 					<td><?php echo(mysql_result($runRacksQuery, $i, 'name')); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p10') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p9') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p8') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p7') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p6') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p5') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p4') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p3') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p2') * 100, 2)); ?></td>
-					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p1') * 100, 2)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p10') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p9') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p8') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p7') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p6') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p5') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p4') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p3') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p2') * 100, 0)); ?></td>
+					<td><?php echo(number_format(mysql_result($runRacksQuery, $i, 'p1') * 100, 0)); ?></td>
 					<?php
 				}
 				else if ($table == 'overtime')
@@ -228,7 +230,7 @@ $runOvertimeQuery = mysql_query($overtimeQuery);
 					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_games_played')); ?></td>
 					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_games_played') - mysql_result($runOvertimeQuery, $i, 'ot_losses')); ?></td>
 					<td><?php echo(mysql_result($runOvertimeQuery, $i, 'ot_losses')); ?></td>
-					<td><?php if (mysql_result($runOvertimeQuery, $i, 'ot_games_played') > 0) { echo(number_format((mysql_result($runOvertimeQuery, $i, 'ot_games_played') - mysql_result($runOvertimeQuery, $i, 'ot_losses')) / mysql_result($runOvertimeQuery, $i, 'ot_games_played') * 100, 2)); } else { echo(number_format(0, 2)); } ?></td>
+					<td><?php if (mysql_result($runOvertimeQuery, $i, 'ot_games_played') > 0) { echo(number_format((mysql_result($runOvertimeQuery, $i, 'ot_games_played') - mysql_result($runOvertimeQuery, $i, 'ot_losses')) / mysql_result($runOvertimeQuery, $i, 'ot_games_played') * 100, 0).'%'); } else { echo(number_format(0, 0).'%'); } ?></td>
 					<?php
 				}
 			?>

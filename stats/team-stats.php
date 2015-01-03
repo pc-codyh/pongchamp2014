@@ -10,7 +10,9 @@ $runQuery = mysql_query($query);
 
 ?>
 
-<table id="team-stats">
+<h2 id="team-stats-title" class="section-header"><img src="img/record.png" style="width: 20px; height: 20px; margin: 0 5px 0 0;" />Record</h2>
+
+<table id="team-stats" class="always-visible">
 	<thead>
 		<tr>
 			<th>ROW</th>
@@ -34,7 +36,7 @@ $runQuery = mysql_query($query);
 			<td><?php echo(mysql_result($runQuery, $i, 'losses')); ?></td>
 			<td><?php echo(mysql_result($runQuery, $i, 'ot_losses')); ?></td>
 			<td><?php echo(mysql_result($runQuery, $i, 'ot_games_played')); ?></td>
-			<td><?php echo(number_format(mysql_result($runQuery, $i, 'win_perc') * 100, 2)); ?></td>
+			<td><?php echo(number_format(mysql_result($runQuery, $i, 'win_perc') * 100, 0).'%'); ?></td>
 			<td><?php echo(mysql_result($runQuery, $i, 'win_streak')); ?></td>
 		</tr>
 		<?php }; ?>

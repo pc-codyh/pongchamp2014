@@ -30,8 +30,8 @@
 
 	function pageEventHandlers()
 	{
+		var tableArray = ['#player-profiles-rank', '#player-profiles-record', '#player-profiles-shooting', '#player-profiles-streaks', '#player-profiles-redemption', '#player-profiles-racks', '#player-profiles-overtime', '#player-profiles-seasons'];
 		var achArray = ['#a_ss', '#a_mj', '#a_tkcp', '#a_hc', '#a_snsn', '#a_ps', '#a_per', '#a_dbno', '#a_mar', '#a_fdm', '#a_ck', '#a_bb', '#a_bc', '#a_bank', '#a_skunk', '#a_sw', '#a_bd', '#a_sss', '#a_sk', '#a_mag', '#a_im', '#a_mark', '#a_sia'];
-		var achImgArray = ['#a_ss img', '#a_mj img', '#a_tkcp img', '#a_hc img', '#a_snsn img', '#a_ps img', '#a_per img', '#a_dbno img', '#a_mar img', '#a_fdm img', '#a_ck img', '#a_bb img', '#a_bc img', '#a_bank img', '#a_skunk img', '#a_sw img', '#a_bd img', '#a_sss img', '#a_sk img', '#a_mag img', '#a_im img', '#a_mark img', '#a_sia img'];
 		var milestoneArray = ['#m_gp', '#m_wins', '#m_cups', '#m_bounces', '#m_rs', '#m_lch', '#m_ae'];
 
 		$(window).scroll(function()
@@ -40,11 +40,11 @@
 			{
 				if (checkIfElementIsOnScreen(achArray[i]))
 				{
-					$(achImgArray[i]).addClass('onscreen');
+					$(achArray[i]).addClass('onscreen');
 				}
 				else
 				{
-					$(achImgArray[i]).removeClass('onscreen');
+					$(achArray[i]).removeClass('onscreen');
 				}
 			}
 
@@ -59,18 +59,35 @@
 					$(milestoneArray[i]).removeClass('onscreen');
 				}
 			}
+
+			for (var i = 0; i < tableArray.length; i++)
+			{
+				if (checkIfElementIsOnScreen(tableArray[i]))
+				{
+					$(tableArray[i]).addClass('onscreen');
+				}
+				else
+				{
+					$(tableArray[i]).removeClass('onscreen');
+				}
+			}
 		});
 	};
 
 	function checkIfElementIsOnScreen(elem)
 	{
-		var docViewTop = $(window).scrollTop();
-	    var docViewBottom = docViewTop + $(window).height();
+		if ($(elem).length)
+		{
+			var docViewTop = $(window).scrollTop();
+		    var docViewBottom = docViewTop + $(window).height();
 
-	    var elemTop = $(elem).offset().top;
-	    var elemBottom = elemTop + $(elem).height();
+		    var elemTop = $(elem).offset().top;
+		    var elemBottom = elemTop + $(elem).height();
 
-	    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+		    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+		}
+
+		return false;
 	};
 
 	function myAccountClickHandler()
@@ -273,7 +290,10 @@
 						$('#stats').animate(
 						{
 							marginTop: '+=' + height
-						}, 1000, 'easeOutBack');
+						}, 1000, 'easeOutBack', function()
+						{
+							$(window).scroll();
+						});
 					});
 				}
 					break;
@@ -328,7 +348,33 @@
 
 				case scope.UI_ACHIEVEMENTS:
 				{
-					$('#stats').load('stats/achievements.php');
+					if (shouldLoadSideMenus)
+					{
+						loadLeftMenu('stats/left-menu-achievements.php');
+						loadRightMenu('stats/right-menu-achievements.php');
+					}
+					else
+					{
+						refreshLeftMenu();
+						refreshRightMenu();
+					}
+
+					$('#stats').load('stats/achievements.php?ach=' + encodeURIComponent(table), function()
+					{
+						$('#stats').animate(
+						{
+							marginTop: '+=' + height
+						}, 1000, 'easeOutBack', function()
+						{
+							$('.fill').each(function(index)
+							{
+								var elemWidth = $(this).width();
+
+								$(this).width(0);
+								$(this).animate({width: elemWidth, opacity: 1}, 2000, 'easeOutQuad');
+							});
+						});
+					});
 				}
 					break;
 			}
@@ -338,7 +384,7 @@
 		{
 			$('#left-menu').animate(
 			{
-				left: '-190px'
+				left: '-240px'
 			}, 500, function()
 			{
 				$('#left-menu').load(path, function()
@@ -366,7 +412,7 @@
 		{
 			$('#right-menu').animate(
 			{
-				right: '-190px'
+				right: '-240px'
 			}, 500, function()
 			{
 				$('#right-menu').load(path, function()
